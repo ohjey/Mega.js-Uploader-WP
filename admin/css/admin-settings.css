@@ -1,0 +1,451 @@
+/**
+ * Mega Upload Admin Settings Page Styles
+ * Matching frontend aesthetic for cohesive design
+ */
+
+/* Fix WordPress footer overlap */
+#wpfooter {
+    position: relative !important;
+    margin-top: 40px;
+}
+
+/* Main container - clean, spacious design */
+.mega-upload-settings-container {
+    max-width: 1400px;
+    margin: 20px 0 60px;
+    position: relative;
+    z-index: 1;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Modern card styling matching frontend */
+.mega-upload-settings-container .card {
+    width: 100%;
+    max-width: 100%;
+    padding: 32px;
+    margin-bottom: 20px;
+    position: relative;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* First card (security info) has no margin-top */
+.mega-upload-settings-container .card:first-child {
+    margin-top: 0;
+}
+
+.mega-upload-settings-container .card:hover {
+    box-shadow: 0 6px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Card headings */
+.mega-upload-settings-container h2 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.mega-upload-settings-container .card > p:first-of-type {
+    margin: 0 0 24px 0;
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+/* Modern form table styling */
+.mega-upload-settings-container .form-table {
+    margin-top: 24px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.mega-upload-settings-container .form-table th {
+    padding: 16px 24px 16px 0;
+    font-weight: 600;
+    font-size: 14px;
+    color: #374151;
+    vertical-align: top;
+    padding-top: 20px;
+    width: auto;
+}
+
+.mega-upload-settings-container .form-table td {
+    padding: 16px 0;
+    width: auto;
+}
+
+/* Modern input styling */
+.mega-upload-settings-container input[type="email"],
+.mega-upload-settings-container input[type="password"],
+.mega-upload-settings-container input[type="text"] {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 16px;
+    font-size: 15px;
+    color: #1a1a1a;
+    background: #fafbfc;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.mega-upload-settings-container input[type="email"]:hover,
+.mega-upload-settings-container input[type="password"]:hover,
+.mega-upload-settings-container input[type="text"]:hover {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+}
+
+.mega-upload-settings-container input[type="email"]:focus,
+.mega-upload-settings-container input[type="password"]:focus,
+.mega-upload-settings-container input[type="text"]:focus {
+    background: #fff;
+    border-color: #0066ff;
+    box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1);
+    outline: none;
+}
+
+/* Field descriptions */
+.mega-upload-settings-container .description {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+/* Required asterisk */
+.required {
+    color: #ef4444;
+    font-weight: 600;
+    margin-left: 2px;
+}
+
+/* Modern button styling matching frontend */
+.mega-upload-settings-container .button-primary {
+    background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
+    border: none;
+    color: #fff;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+    text-shadow: none;
+}
+
+.mega-upload-settings-container .button-primary:hover,
+.mega-upload-settings-container .button-primary:focus {
+    background: linear-gradient(135deg, #0052cc 0%, #0041a3 100%);
+    box-shadow: 0 6px 16px rgba(0, 102, 255, 0.4);
+    transform: translateY(-2px);
+    border: none;
+}
+
+.mega-upload-settings-container .button-primary:active {
+    transform: translateY(0);
+}
+
+.mega-upload-settings-container .button {
+    padding: 8px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+/* Credential status alert (above Account Settings heading) */
+.credential-status-alert {
+    margin-bottom: 20px;
+}
+
+.status-alert {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 2px solid;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.status-alert .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.status-alert span:not(.dashicons) {
+    flex: 1;
+    line-height: 1.5;
+}
+
+.status-alert .button {
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.status-alert.status-success {
+    background: #ecfdf5;
+    border-color: #10b981;
+    color: #065f46;
+}
+
+.status-alert.status-success .dashicons {
+    color: #10b981;
+}
+
+.status-alert.status-error {
+    background: #fef2f2;
+    border-color: #ef4444;
+    color: #991b1b;
+}
+
+.status-alert.status-error .dashicons {
+    color: #ef4444;
+}
+
+.status-alert.status-warning {
+    background: #fef9c3;
+    border-color: #fbbf24;
+    color: #78350f;
+}
+
+.status-alert.status-warning .dashicons {
+    color: #f59e0b;
+}
+
+.status-alert.status-info {
+    background: #eff6ff;
+    border-color: #0066ff;
+    color: #1e3a8a;
+}
+
+.status-alert.status-info .dashicons {
+    color: #0066ff;
+}
+
+/* Security info tooltip */
+.security-info-tooltip {
+    position: relative;
+    display: inline-block;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.security-info-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    color: #0066ff;
+    cursor: help;
+    transition: all 0.2s ease;
+}
+
+.security-info-icon:hover {
+    color: #0052cc;
+    transform: scale(1.1);
+}
+
+.security-info-popup {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    margin-top: 8px;
+    width: 320px;
+    background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+    border: 2px solid #0066ff;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 8px 24px rgba(0, 102, 255, 0.2);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.security-info-popup::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-bottom-color: #0066ff;
+}
+
+.security-info-tooltip:hover .security-info-popup,
+.security-info-tooltip.active .security-info-popup {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+.security-info-popup strong {
+    display: block;
+    color: #1a1a1a;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.security-info-popup span:not(strong) {
+    display: block;
+    color: #374151;
+    font-size: 13px;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Credentials card (account settings) */
+.credentials-card {
+    width: 100%;
+    max-width: 100%;
+}
+
+.credentials-card form {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Notice boxes */
+.mega-upload-settings-container .notice.inline {
+    margin: 0;
+    padding: 16px 20px;
+    border-left-width: 4px;
+    border-radius: 10px;
+    background: #f9fafb;
+}
+
+.mega-upload-settings-container .notice-error.inline {
+    background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%);
+    border-left-color: #ef4444;
+}
+
+.mega-upload-settings-container .notice-warning.inline {
+    background: linear-gradient(135deg, #fef9c3 0%, #ffffff 100%);
+    border-left-color: #fbbf24;
+}
+
+.mega-upload-settings-container .notice-info.inline {
+    background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+    border-left-color: #0066ff;
+}
+
+.mega-upload-settings-container .notice strong {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* Shortcode builder card */
+.mega-shortcode-builder.card {
+    max-width: 100%;
+}
+
+/* Shortcode output section spacing */
+.shortcode-output-wrapper {
+    margin-top: 20px;
+    position: relative;
+    z-index: 2;
+    background: #fff;
+}
+
+.shortcode-output-description {
+    margin-top: 12px;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.shortcode-output-section {
+    position: relative;
+}
+
+/* Submit button wrapper */
+.mega-upload-settings-container .submit {
+    margin: 24px 0 0 0;
+    padding: 0;
+}
+
+/* Responsive design */
+@media (max-width: 782px) {
+    .mega-upload-settings-container .card {
+        padding: 24px 20px;
+    }
+
+    .mega-upload-settings-container input[type="email"],
+    .mega-upload-settings-container input[type="password"],
+    .mega-upload-settings-container input[type="text"] {
+        max-width: 100%;
+    }
+
+    .mega-upload-settings-container .form-table th,
+    .mega-upload-settings-container .form-table td {
+        display: block;
+        width: 100%;
+        padding: 8px 0;
+    }
+
+    .mega-upload-settings-container .form-table th {
+        padding-bottom: 4px;
+    }
+
+    /* Stack status alert content on mobile */
+    .status-alert {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .status-alert .button {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    /* Adjust security tooltip for mobile */
+    .security-info-popup {
+        width: 280px;
+        left: auto;
+        right: 0;
+        transform: translateX(0) translateY(10px);
+    }
+
+    .security-info-tooltip:hover .security-info-popup,
+    .security-info-tooltip.active .security-info-popup {
+        transform: translateX(0) translateY(0);
+    }
+
+    .security-info-popup::before {
+        left: auto;
+        right: 10px;
+        transform: translateX(0);
+    }
+}

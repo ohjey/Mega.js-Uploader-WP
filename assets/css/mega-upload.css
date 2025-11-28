@@ -1,0 +1,537 @@
+/**
+ * Mega Upload - Frontend Styles
+ */
+
+/* Alpine x-cloak - hide content until Alpine is ready */
+[x-cloak] {
+    display: none !important;
+}
+
+/* Container */
+.mega-upload-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 32px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Background wrapper */
+body.mega-upload-page {
+    background: #f5f5f5;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Header */
+.mega-upload-header {
+    margin-bottom: 24px;
+}
+
+.mega-upload-header h3 {
+    margin: 0 0 12px 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.mega-upload-info {
+    margin: 0;
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+/* Initializing State */
+.mega-upload-initializing {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+/* Auth Error State */
+.mega-upload-auth-error {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+/* Drop Zone */
+.mega-upload-dropzone {
+    border: 2px dashed #d1d5db;
+    border-radius: 12px;
+    padding: 48px 24px;
+    text-align: center;
+    background: #fafbfc;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.mega-upload-dropzone:hover {
+    border-color: #9ca3af;
+    background: #f3f4f6;
+}
+
+.mega-upload-dropzone.is-dragging {
+    border-color: #0066ff;
+    background: #eff6ff;
+}
+
+.mega-upload-dropzone.is-loading {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.mega-upload-dropzone.is-error {
+    border-color: #ef4444;
+    background: #fef2f2;
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+    20%, 40%, 60%, 80% { transform: translateX(8px); }
+}
+
+.mega-upload-dropzone-content {
+    pointer-events: none;
+}
+
+.mega-upload-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    padding: 16px;
+    background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
+    border-radius: 16px;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 102, 255, 0.2);
+}
+
+.mega-upload-dropzone-text {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin: 16px 0 8px 0;
+}
+
+.mega-upload-dropzone-text-alt {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 8px 0 20px 0;
+}
+
+/* Buttons */
+.mega-upload-button {
+    display: inline-block;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    background: #0066ff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    pointer-events: auto;
+    box-shadow: 0 2px 8px rgba(0, 102, 255, 0.2);
+}
+
+.mega-upload-button:hover {
+    background: #0052cc;
+    box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.mega-upload-button:active {
+    transform: translateY(0);
+}
+
+.mega-upload-button:disabled {
+    background: #d1d5db;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.mega-upload-button-primary {
+    background: #0066ff;
+}
+
+.mega-upload-button-primary:hover:not(:disabled) {
+    background: #0052cc;
+}
+
+.mega-upload-button-secondary {
+    background: #fff;
+    color: #1a1a1a;
+    border: 2px solid #e5e7eb;
+    box-shadow: none;
+}
+
+.mega-upload-button-secondary:hover:not(:disabled) {
+    background: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.mega-upload-button-small {
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+.mega-upload-button-remove {
+    background: #dc3545;
+}
+
+.mega-upload-button-remove:hover {
+    background: #c82333;
+}
+
+.mega-upload-button-cancel {
+    background: #ffc107;
+    color: #333;
+}
+
+.mega-upload-button-cancel:hover {
+    background: #e0a800;
+}
+
+.mega-upload-button-icon {
+    padding: 6px;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mega-upload-button-icon:hover {
+    background: #f3f4f6;
+    color: #1a1a1a;
+}
+
+/* Spinner */
+.mega-upload-spinner {
+    text-align: center;
+}
+
+.mega-upload-spinner p {
+    color: #6b7280;
+    font-size: 14px;
+    margin: 0;
+}
+
+.mega-upload-spinner-circle {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 15px;
+    border: 3px solid #e5e7eb;
+    border-top: 3px solid #0066ff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Validation Error Message */
+.mega-upload-validation-error {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    color: #ef4444;
+    font-size: 14px;
+    font-weight: 500;
+    animation: slideDown 0.3s ease;
+}
+
+/* File Queue */
+.mega-upload-queue {
+    margin-top: 24px;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+.mega-upload-queue h4 {
+    margin: 0 0 16px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    display: none;
+}
+
+/* File Item */
+.mega-upload-file-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    background: #fafbfc;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.mega-upload-file-item:last-child {
+    margin-bottom: 0;
+}
+
+.mega-upload-file-item.status-uploading {
+    border-color: #0066ff;
+    background: #eff6ff;
+}
+
+.mega-upload-file-item.status-completed {
+    border-color: #10b981;
+    background: #ecfdf5;
+}
+
+.mega-upload-file-item.status-error {
+    border-color: #ef4444;
+    background: #fef2f2;
+}
+
+.mega-upload-file-item.status-cancelled {
+    opacity: 1;
+    animation: fadeOut 1.5s ease forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    33% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+}
+
+/* File Icon */
+.mega-upload-file-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0066ff;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.mega-upload-file-item.status-completed .mega-upload-file-icon {
+    background: #10b981;
+}
+
+.mega-upload-file-item.status-error .mega-upload-file-icon {
+    background: #ef4444;
+}
+
+.mega-upload-file-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.mega-upload-file-name {
+    font-weight: 500;
+    font-size: 14px;
+    color: #1a1a1a;
+    word-break: break-word;
+}
+
+.mega-upload-file-size {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* Progress Bar */
+.mega-upload-file-progress {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.mega-upload-progress-bar {
+    width: 100%;
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.mega-upload-progress-fill {
+    height: 100%;
+    background: #0066ff;
+    transition: width 0.3s ease;
+    border-radius: 3px;
+}
+
+.mega-upload-progress-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: #6b7280;
+    margin-top: 4px;
+}
+
+/* Status Badge */
+.mega-upload-file-status {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.status-queued {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+.status-uploading {
+    background: #eff6ff;
+    color: #0066ff;
+}
+
+.status-completed {
+    background: #d1fae5;
+    color: #10b981;
+}
+
+.status-error {
+    background: #fee2e2;
+    color: #ef4444;
+}
+
+.status-cancelled {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+/* File Actions */
+.mega-upload-file-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Error Message */
+.mega-upload-error-message {
+    grid-column: 1 / -1;
+    margin: 5px 0 0 0;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #721c24;
+    background: #f5c6cb;
+    border-radius: 4px;
+}
+
+/* Action Buttons Container */
+.mega-upload-actions {
+    margin-top: 24px;
+    padding-top: 0;
+    border-top: none;
+}
+
+.mega-upload-actions .mega-upload-button {
+    width: 100%;
+    justify-content: center;
+}
+
+/* Sticky Upload Button */
+.mega-upload-actions-sticky {
+    position: sticky;
+    bottom: 0;
+    padding: 16px 0;
+    margin-top: 24px;
+    z-index: 10;
+}
+
+/* Error Container */
+.mega-upload-error {
+    padding: 15px 20px;
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 6px;
+    margin: 20px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .mega-upload-container {
+        margin: 20px 10px;
+        padding: 24px 16px;
+    }
+
+    .mega-upload-dropzone {
+        padding: 32px 16px;
+    }
+
+    .mega-upload-icon {
+        width: 48px;
+        height: 48px;
+        padding: 12px;
+    }
+
+    .mega-upload-dropzone-text {
+        font-size: 15px;
+    }
+
+    .mega-upload-file-item {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .mega-upload-file-icon {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* Animations */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* File Input (Hidden) */
+.mega-upload-file-input {
+    display: none;
+}
