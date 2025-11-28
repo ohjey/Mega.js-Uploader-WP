@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Mega.nz Browser Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        #status {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f5f5f5;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+
+        #progress {
+            margin: 10px 0;
+        }
+
+        input[type="file"] {
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #007cba;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #005a87;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Mega.nz Browser Upload</h1>
+
+    <div id="status">Ready to test...</div>
+    <div id="progress"></div>
+
+    <input type="file" id="fileInput" />
+    <button id="uploadBtn">Upload to Mega.nz</button>
+
+    <script type="module">
+        // Import required libraries
+        import { Storage } from 'https://unpkg.com/megajs@1/dist/main.browser-es.mjs';
+
+        const statusDiv = document.getElementById('status');
+        const progressDiv = document.getElementById('progress');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const fileInput = document.getElementById('fileInput');
+
+        function log(message, type = '') {
+            console.log(message);
+            statusDiv.innerHTML = `<span class="${type}">${message}</span>`;
+        }
+
+        function updateProgress(percent, speed) {
+            progressDiv.innerHTML = `Progress: ${percent}% - Speed: ${(speed / (1024 * 1024)).toFixed(1)} MB/s`;
+        }
+
+        uploadBtn.addEventListener('click', async () => {
+            const file = fileInput.files[0];
+            if (!file) {
+                log('Please select a file first', 'error');
+                return;
+            }
+
+            uploadBtn.disabled = true;
+
+            try {
+                log('Connecting to Mega.nz...');
+
+                // Replace with your test credentials
+                const storage = await new Storage({
+                    email: 'YOUR_EMAIL',
+                    password: 'YOUR_PASSWORD'
+                }).ready;
+
+                log('Connected! Starting upload...');
+
+                // Get root folder
+                const rootFolder = storage.root;
+
+                // Create upload stream with buffering enabled
+                const uploadStream = rootFolder.upload({
+                    name: file.name,
+                    size: file.size,
+                    allowUploadBuffering: true
+                });
+
+                // Track progress
+                let lastUpdate = Date.now();
+                let lastBytes = 0;
+
+                uploadStream.on('progress', (info) => {
+                    const now = Date.now();
+                    const timeDiff = (now - lastUpdate) / 1000;
+                    const bytesDiff = info.bytesUploaded - lastBytes;
+                    const speed = bytesDiff / timeDiff;
+
+                    const percent = Math.round((info.bytesUploaded / info.bytesTotal) * 100);
+                    updateProgress(percent, speed);
+
+                    lastUpdate = now;
+                    lastBytes = info.bytesUploaded;
+                });
+
+                uploadStream.on('error', (error) => {
+                    log(`Upload error: ${error.message}`, 'error');
+                    uploadBtn.disabled = false;
+                });
+
+                // Use browser's native streaming
+                if (file.stream && typeof file.stream === 'function') {
+                    const stream = file.stream();
+                    const reader = stream.getReader();
+
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+                        uploadStream.write(value);
+                    }
+                } else {
+                    // Fallback: manual chunking for older browsers
+                    const chunkSize = 4 * 1024 * 1024; // 4MB chunks with buffering
+                    let offset = 0;
+
+                    while (offset < file.size) {
+                        const end = Math.min(offset + chunkSize, file.size);
+                        const slice = file.slice(offset, end);
+                        const arrayBuffer = await slice.arrayBuffer();
+                        const chunk = new Uint8Array(arrayBuffer);
+                        uploadStream.write(chunk);
+                        offset = end;
+                    }
+                }
+
+                uploadStream.end();
+
+                // Wait for completion
+                await uploadStream.complete;
+
+                log('Upload completed successfully!', 'success');
+                progressDiv.innerHTML = '';
+
+            } catch (error) {
+                log(`Error: ${error.message}`, 'error');
+                console.error('Full error:', error);
+            } finally {
+                uploadBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
